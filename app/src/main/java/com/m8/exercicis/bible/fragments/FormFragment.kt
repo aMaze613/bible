@@ -40,6 +40,7 @@ class FormFragment : Fragment() {
             ) {
                 dbHelper.insertVerse(
                     Verse(
+                        -1,
                         txtBook.text.toString(),
                         txtChapter.text.toString().toInt(),
                         txtVerse.text.toString().toInt(),
