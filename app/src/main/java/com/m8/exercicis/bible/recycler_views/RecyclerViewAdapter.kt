@@ -1,7 +1,6 @@
 package com.m8.exercicis.bible.recycler_views
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import com.m8.exercicis.bible.Verse
 import com.m8.exercicis.bible.activities.BottomNavigationActivity.Companion.dbHelper
 import com.m8.exercicis.bible.fragments.DetailFragment
 
-class RecyclerViewAdapter(private var list: MutableList<Verse>, private var context: Context?) :
+class RecyclerViewAdapter(private var list: MutableList<Verse>) :
     RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

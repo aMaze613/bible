@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,20 +24,24 @@ class ListFragment : Fragment() {
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_list, container, false)
 
+        val lblEmptyList: TextView = view.findViewById(R.id.lblEmptyList)
         val list: MutableList<Verse> = dbHelper.getVerses()
 
         Log.i("ListVerses", list.toString())
 
-        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerList)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        val adapter = RecyclerViewAdapter(list, context)
-        recyclerView.adapter = adapter
-        recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                context,
-                DividerItemDecoration.VERTICAL
+        if (list.isNotEmpty()) {
+            lblEmptyList.visibility = View.GONE
+            val recyclerView: RecyclerView = view.findViewById(R.id.recyclerList)
+            recyclerView.layoutManager = LinearLayoutManager(context)
+            val adapter = RecyclerViewAdapter(list)
+            recyclerView.adapter = adapter
+            recyclerView.addItemDecoration(
+                DividerItemDecoration(
+                    context,
+                    DividerItemDecoration.VERTICAL
+                )
             )
-        )
+        }
 
         return view
     }
