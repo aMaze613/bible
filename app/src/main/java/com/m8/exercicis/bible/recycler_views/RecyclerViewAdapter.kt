@@ -29,7 +29,8 @@ class RecyclerViewAdapter(private var list: MutableList<Verse>, private var cont
         holder.itemView.setOnClickListener { v ->
             val activity = v!!.context as AppCompatActivity
             val transaction = activity.supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, DetailFragment())
+            transaction.replace(R.id.fragment_container, DetailFragment(list[position]))
+            transaction.addToBackStack(null)
             transaction.commit()
         }
 

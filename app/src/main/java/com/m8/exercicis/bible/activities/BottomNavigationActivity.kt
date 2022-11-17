@@ -15,13 +15,14 @@ class BottomNavigationActivity : AppCompatActivity() {
 
     companion object {
         lateinit var dbHelper: VersesDBHelper
+        lateinit var bottomNav: BottomNavigationView
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bottom_navigation)
 
-        val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNav = findViewById(R.id.bottom_navigation)
         loadFragment(HomeFragment())
 
         dbHelper = VersesDBHelper(this)

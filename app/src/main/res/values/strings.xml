@@ -21,6 +21,4 @@
     <string name="not_added_verse">All fields need to be filled to add the verse</string>
     <string name="deleted_all">All verses have been removed from the list</string>
     <string name="btn_delete">DELETE</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

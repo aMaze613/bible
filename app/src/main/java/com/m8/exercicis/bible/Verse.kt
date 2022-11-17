@@ -8,6 +8,6 @@ class Verse(
     val text: String
 ) {
     override fun toString(): String {
-        return "\"$text\" - $book $chapter:$verse"
+        return "$book $chapter:$verse"
     }
 }
