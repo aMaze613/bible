@@ -43,7 +43,7 @@ class VersesDBHelper(context: Context) :
         this.writableDatabase.insert(TABLE_NAME, null, values)
     }
 
-    @SuppressLint("Range", "Recycle")
+    @SuppressLint("Range")
     fun getVerses(): MutableList<Verse> {
         val db = this.writableDatabase
         val verses: MutableList<Verse> = mutableListOf()
@@ -61,6 +61,7 @@ class VersesDBHelper(context: Context) :
                 )
             )
         }
+        cursor.close()
         return verses
     }
 
