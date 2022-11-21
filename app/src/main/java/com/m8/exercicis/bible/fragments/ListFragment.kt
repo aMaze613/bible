@@ -29,19 +29,18 @@ class ListFragment : Fragment() {
 
         Log.i("ListVerses", list.toString())
 
-        if (list.isNotEmpty()) {
-            lblEmptyList.visibility = View.GONE
-            val recyclerView: RecyclerView = view.findViewById(R.id.recyclerList)
-            recyclerView.layoutManager = LinearLayoutManager(context)
-            val adapter = RecyclerViewAdapter(list, lblEmptyList)
-            recyclerView.adapter = adapter
-            recyclerView.addItemDecoration(
-                DividerItemDecoration(
-                    context,
-                    DividerItemDecoration.VERTICAL
-                )
+        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerList)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        val adapter = RecyclerViewAdapter(list, lblEmptyList)
+        recyclerView.adapter = adapter
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                DividerItemDecoration.VERTICAL
             )
-        }
+        )
+        if (list.isEmpty()) recyclerView.visibility = View.GONE
+        else lblEmptyList.visibility = View.GONE
 
         return view
     }
