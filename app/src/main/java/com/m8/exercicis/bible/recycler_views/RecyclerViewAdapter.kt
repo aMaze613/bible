@@ -13,7 +13,7 @@ import com.m8.exercicis.bible.Verse
 import com.m8.exercicis.bible.activities.BottomNavigationActivity.Companion.dbHelper
 import com.m8.exercicis.bible.fragments.DetailFragment
 
-class RecyclerViewAdapter(private var list: MutableList<Verse>) :
+class RecyclerViewAdapter(private var list: MutableList<Verse>, private var lblEmptyList: TextView) :
     RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -37,6 +37,7 @@ class RecyclerViewAdapter(private var list: MutableList<Verse>) :
             dbHelper.deleteVerse(list[position].id)
             list.removeAt(position)
             notifyDataSetChanged()
+            if (list.isEmpty()) lblEmptyList.visibility = View.VISIBLE
         }
     }
 

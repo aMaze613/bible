@@ -33,7 +33,7 @@ class ListFragment : Fragment() {
             lblEmptyList.visibility = View.GONE
             val recyclerView: RecyclerView = view.findViewById(R.id.recyclerList)
             recyclerView.layoutManager = LinearLayoutManager(context)
-            val adapter = RecyclerViewAdapter(list)
+            val adapter = RecyclerViewAdapter(list, lblEmptyList)
             recyclerView.adapter = adapter
             recyclerView.addItemDecoration(
                 DividerItemDecoration(
