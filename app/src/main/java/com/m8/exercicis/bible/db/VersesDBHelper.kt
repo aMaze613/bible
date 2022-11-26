@@ -20,7 +20,7 @@ class VersesDBHelper(context: Context) :
 
     companion object {
         // If you change the database schema, you must increment the database version
-        const val DATABASE_VERSION = 2
+        const val DATABASE_VERSION = 6
         const val DATABASE_NAME = "verses.db"
     }
 
@@ -43,16 +43,17 @@ class VersesDBHelper(context: Context) :
         this.writableDatabase.insert(TABLE_NAME, null, values)
     }
 
-    @SuppressLint("Range", "Recycle")
+    @SuppressLint("Range")
     fun getVerses(): MutableList<Verse> {
         val db = this.writableDatabase
         val verses: MutableList<Verse> = mutableListOf()
         val query =
-            "SELECT $COLUMN_NAME_BOOK, $COLUMN_NAME_CHAPTER, $COLUMN_NAME_VERSE, $COLUMN_NAME_TEXT FROM $TABLE_NAME"
+            "SELECT id, $COLUMN_NAME_BOOK, $COLUMN_NAME_CHAPTER, $COLUMN_NAME_VERSE, $COLUMN_NAME_TEXT FROM $TABLE_NAME"
         val cursor: Cursor = db.rawQuery(query, null)
         while (cursor.moveToNext()) {
             verses.add(
                 Verse(
+                    cursor.getInt(cursor.getColumnIndex("id")).toLong(),
                     cursor.getString(cursor.getColumnIndex(COLUMN_NAME_BOOK)),
                     cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_CHAPTER)),
                     cursor.getInt(cursor.getColumnIndex(COLUMN_NAME_VERSE)),
@@ -60,10 +61,15 @@ class VersesDBHelper(context: Context) :
                 )
             )
         }
+        cursor.close()
         return verses
     }
 
     fun deleteAllVerses() {
         this.writableDatabase.execSQL("DELETE FROM verses")
+    }
+
+    fun deleteVerse(id: Long) {
+        this.writableDatabase.execSQL("DELETE FROM verses WHERE id=$id")
     }
 }
