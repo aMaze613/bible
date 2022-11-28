@@ -11,6 +11,7 @@ import com.m8.exercicis.bible.R
 import com.m8.exercicis.bible.Verse
 import com.m8.exercicis.bible.activities.BottomNavigationActivity.Companion.bottomNav
 
+
 class DetailFragment(private val verse: Verse) : Fragment() {
 
     @SuppressLint("SetTextI18n")

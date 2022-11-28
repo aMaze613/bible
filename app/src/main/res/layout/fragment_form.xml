@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="125dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="101dp"
         android:autofillHints=""
         android:background="@drawable/custom_input"
@@ -80,11 +80,11 @@
         android:autofillHints=""
         android:background="@drawable/custom_input"
         android:ems="10"
+        android:gravity="top"
         android:hint="@string/txt_text"
-        android:inputType="text"
+        android:inputType="textMultiLine"
         android:minHeight="48dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:padding="10dp"
         android:textColorHint="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -114,16 +114,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnCreate" />
-
-    <TextView
-        android:id="@+id/lblCreateResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="41dp"
-        android:layout_marginEnd="177dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDeleteAll" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

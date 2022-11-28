@@ -1,17 +1,18 @@
 package com.m8.exercicis.bible.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.m8.exercicis.bible.R
 import com.m8.exercicis.bible.Verse
 import com.m8.exercicis.bible.activities.BottomNavigationActivity.Companion.dbHelper
+
 
 class FormFragment : Fragment() {
 
@@ -20,17 +21,26 @@ class FormFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         val view: View = inflater.inflate(R.layout.fragment_form, container, false)
 
         val txtBook: EditText = view.findViewById(R.id.txtBook)
         val txtChapter: EditText = view.findViewById(R.id.txtChapter)
         val txtVerse: EditText = view.findViewById(R.id.txtVerse)
         val txtText: EditText = view.findViewById(R.id.txtText)
-        val lblCreateResult: TextView = view.findViewById(R.id.lblCreateResult)
-
         val btnCreate: Button = view.findViewById(R.id.btnCreate)
         val btnDeleteAll: Button = view.findViewById(R.id.btnDeleteAll)
+
+        val builderDeleteList = AlertDialog.Builder(context)
+        builderDeleteList.setMessage(getString(R.string.dialog_delete_data))
+            .setPositiveButton(getString(R.string.dialog_proceed)) { _, _ ->
+                dbHelper.deleteAllVerses()
+                Toast.makeText(context, getString(R.string.toast_data_deleted), Toast.LENGTH_SHORT)
+                    .show()
+            }
+            .setNegativeButton(getString(R.string.dialog_cancel)) { _, _ ->
+                Toast.makeText(context, getString(R.string.toast_cancelled), Toast.LENGTH_SHORT)
+                    .show()
+            }
 
         btnCreate.setOnClickListener {
             if (txtBook.text.toString().isNotBlank()
@@ -47,22 +57,16 @@ class FormFragment : Fragment() {
                         txtText.text.toString()
                     )
                 )
-                Log.i("AddedVerse", getString(R.string.added_verse))
-                lblCreateResult.text = getString(R.string.added_verse)
                 txtBook.text.clear()
                 txtChapter.text.clear()
                 txtVerse.text.clear()
                 txtText.text.clear()
-            } else {
-                Log.i("NotAddedVerse", getString(R.string.not_added_verse))
-                lblCreateResult.text = getString(R.string.not_added_verse)
-            }
+                Toast.makeText(context, getString(R.string.toast_new_verse), Toast.LENGTH_SHORT).show()
+            } else Toast.makeText(context, getString(R.string.toast_fill_fields), Toast.LENGTH_SHORT).show()
         }
 
         btnDeleteAll.setOnClickListener {
-            dbHelper.deleteAllVerses()
-            Log.i("DeletedAll", getString(R.string.deleted_all))
-            lblCreateResult.text = getString(R.string.deleted_all)
+            builderDeleteList.create().show()
         }
 
         return view

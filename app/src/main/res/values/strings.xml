@@ -22,4 +22,14 @@
     <string name="deleted_all">All verses have been removed from the list</string>
     <string name="btn_delete">DELETE</string>
     <string name="list_empty">List is empty</string>
+    <string name="dialog_proceed">PROCEED</string>
+    <string name="dialog_cancel">CANCEL</string>
+    <string name="dialog_delete_verse">Are you sure you want to delete it?</string>
+    <string name="toast_verse_deleted">Verse has been deleted</string>
+    <string name="toast_cancelled">Operation cancelled</string>
+    <string name="toast_data_deleted">All data has been deleted</string>
+    <string name="dialog_delete_data">Are you sure you want to delete all data?</string>
+    <string name="toast_new_verse">A new verse has been added</string>
+    <string name="toast_fill_fields">All fields must be filled</string>
+    <string name="txt_welcome">WELCOME, SINNER</string>
 </resources>

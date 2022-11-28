@@ -1,5 +1,6 @@
 package com.m8.exercicis.bible
 
+
 class Verse(
     var id: Long,
     val book: String,
@@ -7,7 +8,7 @@ class Verse(
     val verse: Int,
     val text: String
 ) {
-    override fun toString(): String {
-        return "$book $chapter:$verse"
-    }
+
+    override fun toString() = "$book $chapter:$verse"
+
 }

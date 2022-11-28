@@ -1,17 +1,20 @@
 package com.m8.exercicis.bible.recycler_views
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.m8.exercicis.bible.R
 import com.m8.exercicis.bible.Verse
 import com.m8.exercicis.bible.activities.BottomNavigationActivity.Companion.dbHelper
 import com.m8.exercicis.bible.fragments.DetailFragment
+
 
 class RecyclerViewAdapter(private var list: MutableList<Verse>, private var lblEmptyList: TextView) :
     RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
@@ -27,26 +30,43 @@ class RecyclerViewAdapter(private var list: MutableList<Verse>, private var lblE
 
         holder.itemView.setOnClickListener { v ->
             val activity = v!!.context as AppCompatActivity
-            val transaction = activity.supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, DetailFragment(list[position]))
-            transaction.addToBackStack(null)
-            transaction.commit()
+            activity.supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, DetailFragment(list[position]))
+                .addToBackStack(null)
+                .commit()
         }
+
+        val builderDeleteVerse = AlertDialog.Builder(holder.itemView.context)
+        builderDeleteVerse.setMessage(holder.itemView.context.getString(R.string.dialog_delete_verse))
+            .setPositiveButton(holder.itemView.context.getString(R.string.dialog_proceed)) { _, _ ->
+                dbHelper.deleteVerse(list[position].id)
+                list.removeAt(position)
+                notifyDataSetChanged()
+                if (list.isEmpty()) lblEmptyList.visibility = View.VISIBLE
+                Toast.makeText(
+                    holder.itemView.context,
+                    holder.itemView.context.getString(R.string.toast_verse_deleted),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            .setNegativeButton(holder.itemView.context.getString(R.string.dialog_cancel)) { _, _ ->
+                Toast.makeText(
+                    holder.itemView.context,
+                    holder.itemView.context.getString(R.string.toast_cancelled),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
 
         holder.btnDelete.setOnClickListener {
-            dbHelper.deleteVerse(list[position].id)
-            list.removeAt(position)
-            notifyDataSetChanged()
-            if (list.isEmpty()) lblEmptyList.visibility = View.VISIBLE
+            builderDeleteVerse.create().show()
         }
     }
 
-    override fun getItemCount(): Int {
-        return list.size
-    }
+    override fun getItemCount() = list.size
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val txtNom: TextView = view.findViewById(R.id.itemTitol)
         val btnDelete: Button = view.findViewById(R.id.btnDelete)
     }
+
 }

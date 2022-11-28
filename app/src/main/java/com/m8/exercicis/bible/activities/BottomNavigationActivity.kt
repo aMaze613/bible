@@ -11,6 +11,7 @@ import com.m8.exercicis.bible.fragments.FormFragment
 import com.m8.exercicis.bible.fragments.HomeFragment
 import com.m8.exercicis.bible.fragments.ListFragment
 
+
 class BottomNavigationActivity : AppCompatActivity() {
 
     companion object {
@@ -41,21 +42,18 @@ class BottomNavigationActivity : AppCompatActivity() {
                     loadFragment(ListFragment())
                     true
                 }
-                else -> {
-                    false
-                }
+                else -> false
             }
         }
     }
 
-    private fun loadFragment(fragment: Fragment) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragment)
-        transaction.commit()
-    }
+    private fun loadFragment(fragment: Fragment) = supportFragmentManager.beginTransaction()
+        .replace(R.id.fragment_container, fragment)
+        .commit()
 
     override fun onDestroy() {
-        dbHelper.close()
         super.onDestroy()
+        dbHelper.close()
     }
+
 }
