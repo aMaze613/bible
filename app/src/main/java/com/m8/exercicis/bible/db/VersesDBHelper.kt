@@ -20,7 +20,10 @@ class VersesDBHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
-        // If you change the database schema, you must increment the database version
+        /*
+         * If the database schema is changed, the database version must be incremented for the
+         * changes to be applied.
+         */
         const val DATABASE_VERSION = 6
         const val DATABASE_NAME = "verses.db"
     }

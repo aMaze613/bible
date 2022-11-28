@@ -12,6 +12,10 @@ import com.m8.exercicis.bible.Verse
 import com.m8.exercicis.bible.activities.BottomNavigationActivity.Companion.bottomNav
 
 
+/*
+ * A Verse variable is passed when creating an instance of this class, to be able to access the
+ * content of the clicked verse from the list.
+ */
 class DetailFragment(private val verse: Verse) : Fragment() {
 
     @SuppressLint("SetTextI18n")
@@ -27,6 +31,10 @@ class DetailFragment(private val verse: Verse) : Fragment() {
         lblVerseTitle.text = verse.toString()
         lblVerseText.text = "\"${verse.text}\""
 
+        /*
+         * When a DetailFragment instance is created, the bottom navigation is hidden, since with
+         * the back button from the phone is enough to return to the previous fragment.
+         */
         bottomNav.visibility = View.GONE
 
         return view
@@ -34,6 +42,10 @@ class DetailFragment(private val verse: Verse) : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        /*
+         * When the DetailFragment instance gets destroyed, probably because the user has pressed
+         * the back button, the bottom navigation gets visible again.
+         */
         bottomNav.visibility = View.VISIBLE
     }
 

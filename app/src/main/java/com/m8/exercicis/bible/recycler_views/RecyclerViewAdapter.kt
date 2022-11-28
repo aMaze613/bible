@@ -16,6 +16,10 @@ import com.m8.exercicis.bible.activities.BottomNavigationActivity.Companion.dbHe
 import com.m8.exercicis.bible.fragments.DetailFragment
 
 
+/*
+ * A TextView variable is passed when creating an instance of this class, to be able to hide or show
+ * it from here.
+ */
 class RecyclerViewAdapter(private var list: MutableList<Verse>, private var lblEmptyList: TextView) :
     RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
@@ -36,6 +40,10 @@ class RecyclerViewAdapter(private var list: MutableList<Verse>, private var lblE
                 .commit()
         }
 
+        /*
+         * When trying to delete a verse from the list, the user is prompt with a dialog to confirm
+         * the decision, and after that, a toast is shown with a message according to that choice.
+         */
         val builderDeleteVerse = AlertDialog.Builder(holder.itemView.context)
         builderDeleteVerse.setMessage(holder.itemView.context.getString(R.string.dialog_delete_verse))
             .setPositiveButton(holder.itemView.context.getString(R.string.dialog_proceed)) { _, _ ->

@@ -14,6 +14,11 @@ import com.m8.exercicis.bible.fragments.ListFragment
 
 class BottomNavigationActivity : AppCompatActivity() {
 
+    /*
+     * A VersesDBHelper variable is declared as a companion object to make it possible to call it's
+     * methods from other classes, and the reason to do the same with BottomNavigationView is to be
+     * able to hide it from the DetailFragment.
+     */
     companion object {
         lateinit var dbHelper: VersesDBHelper
         lateinit var bottomNav: BottomNavigationView
@@ -23,6 +28,10 @@ class BottomNavigationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bottom_navigation)
 
+        /*
+         * When assigning the corresponding element to bottomNav, no fragment is loaded by default,
+         * so HomeFragment must be loaded manually.
+         */
         bottomNav = findViewById(R.id.bottom_navigation)
         loadFragment(HomeFragment())
 

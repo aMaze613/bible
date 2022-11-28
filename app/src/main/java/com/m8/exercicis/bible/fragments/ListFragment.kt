@@ -36,6 +36,10 @@ class ListFragment : Fragment() {
                 DividerItemDecoration.VERTICAL
             )
         )
+        /*
+         * If the list from the recycler view is empty, the element is hidden to let a message be
+         * visible indicating that the list is indeed empty.
+         */
         if (list.isEmpty()) recyclerView.visibility = View.GONE
         else lblEmptyList.visibility = View.GONE
 

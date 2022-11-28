@@ -30,6 +30,11 @@ class FormFragment : Fragment() {
         val btnCreate: Button = view.findViewById(R.id.btnCreate)
         val btnDeleteAll: Button = view.findViewById(R.id.btnDeleteAll)
 
+        /*
+         * When trying to delete all verses from the list, the user is prompt with a dialog to
+         * confirm the decision, and after that, a toast is shown with a message according to that
+         * choice.
+         */
         val builderDeleteList = AlertDialog.Builder(context)
         builderDeleteList.setMessage(getString(R.string.dialog_delete_data))
             .setPositiveButton(getString(R.string.dialog_proceed)) { _, _ ->
@@ -42,6 +47,10 @@ class FormFragment : Fragment() {
                     .show()
             }
 
+        /*
+         * To create a new verse, all fields must be filled, and if not, a toast is shown warning
+         * the user.
+         */
         btnCreate.setOnClickListener {
             if (txtBook.text.toString().isNotBlank()
                 && txtChapter.text.toString().isNotBlank()
