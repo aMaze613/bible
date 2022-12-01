@@ -32,4 +32,6 @@
     <string name="toast_new_verse">A new verse has been added</string>
     <string name="toast_fill_fields">All fields must be filled</string>
     <string name="txt_welcome">WELCOME, SINNER</string>
+    <string name="logout_menu_item">Logout</string>
+    <string name="settings_item_menu">Settings</string>
 </resources>

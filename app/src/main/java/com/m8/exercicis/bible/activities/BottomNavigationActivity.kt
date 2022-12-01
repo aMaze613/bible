@@ -1,7 +1,10 @@
 package com.m8.exercicis.bible.activities
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -10,6 +13,7 @@ import com.m8.exercicis.bible.db.VersesDBHelper
 import com.m8.exercicis.bible.fragments.FormFragment
 import com.m8.exercicis.bible.fragments.HomeFragment
 import com.m8.exercicis.bible.fragments.ListFragment
+import com.m8.exercicis.bible.fragments.SettingsFragment
 
 
 class BottomNavigationActivity : AppCompatActivity() {
@@ -54,6 +58,27 @@ class BottomNavigationActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.settings, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.item_settings -> {
+            loadFragment(SettingsFragment())
+            true
+        }
+        R.id.item_logout -> {
+            getSharedPreferences("BIBLE_APP_CONFIGURATION", Context.MODE_PRIVATE)
+                .edit().putBoolean("logged", false).apply()
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
     }
 
     private fun loadFragment(fragment: Fragment) = supportFragmentManager.beginTransaction()
