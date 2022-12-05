@@ -20,7 +20,7 @@
     <string name="added_verse">New verse has been added to the list</string>
     <string name="not_added_verse">All fields need to be filled to add the verse</string>
     <string name="deleted_all">All verses have been removed from the list</string>
-    <string name="btn_delete">DELETE</string>
+    <string name="btn_delete">DELETE</string>z
     <string name="list_empty">List is empty</string>
     <string name="dialog_proceed">PROCEED</string>
     <string name="dialog_cancel">CANCEL</string>

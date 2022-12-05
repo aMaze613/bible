@@ -37,22 +37,22 @@ class BottomNavigationActivity : AppCompatActivity() {
          * so HomeFragment must be loaded manually.
          */
         bottomNav = findViewById(R.id.bottom_navigation)
-        loadFragment(HomeFragment())
+        loadFragment(HomeFragment(), false)
 
         dbHelper = VersesDBHelper(this)
 
         bottomNav.setOnItemSelectedListener { item: MenuItem ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    loadFragment(HomeFragment())
+                    loadFragment(HomeFragment(), false)
                     true
                 }
                 R.id.nav_form -> {
-                    loadFragment(FormFragment())
+                    loadFragment(FormFragment(), false)
                     true
                 }
                 R.id.nav_list -> {
-                    loadFragment(ListFragment())
+                    loadFragment(ListFragment(), false)
                     true
                 }
                 else -> false
@@ -67,7 +67,7 @@ class BottomNavigationActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.item_settings -> {
-            loadFragment(SettingsFragment())
+            loadFragment(SettingsFragment(), true)
             true
         }
         R.id.item_logout -> {
@@ -81,9 +81,12 @@ class BottomNavigationActivity : AppCompatActivity() {
         else -> super.onOptionsItemSelected(item)
     }
 
-    private fun loadFragment(fragment: Fragment) = supportFragmentManager.beginTransaction()
-        .replace(R.id.fragment_container, fragment)
-        .commit()
+    private fun loadFragment(fragment: Fragment, addToBackStack: Boolean) {
+        val transactionManager = supportFragmentManager.beginTransaction()
+        transactionManager.replace(R.id.fragment_container, fragment)
+        if (addToBackStack) transactionManager.addToBackStack(null)
+        transactionManager.commit()
+    }
 
     override fun onDestroy() {
         super.onDestroy()

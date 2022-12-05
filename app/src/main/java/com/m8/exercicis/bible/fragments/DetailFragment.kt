@@ -31,13 +31,16 @@ class DetailFragment(private val verse: Verse) : Fragment() {
         lblVerseTitle.text = verse.toString()
         lblVerseText.text = "\"${verse.text}\""
 
+        return view
+    }
+
+    override fun onResume() {
+        super.onResume()
         /*
          * When a DetailFragment instance is created, the bottom navigation is hidden, since with
          * the back button from the phone is enough to return to the previous fragment.
          */
         bottomNav.visibility = View.GONE
-
-        return view
     }
 
     override fun onDestroy() {
