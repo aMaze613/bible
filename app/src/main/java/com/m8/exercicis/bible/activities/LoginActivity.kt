@@ -14,8 +14,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-
+        
         /*
          * The Shared Preferences gets checked before loading anything from the Login Activity, and
          * if the user was logged before, it skips directly to the Bottom Navigation Activity.
@@ -26,6 +25,8 @@ class LoginActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
+
+        setContentView(R.layout.activity_login)
 
         val txtUsername: EditText = findViewById(R.id.txtUsername)
         val txtPassword: EditText = findViewById(R.id.txtPassword)
