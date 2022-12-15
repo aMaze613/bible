@@ -3,6 +3,7 @@ package com.m8.exercicis.bible.fragments
 import android.content.Context
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.preference.Preference

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Bíblia</string>
+    <string name="txt_username">Nom d\'usuari</string>
+    <string name="txt_password">Contrasenya</string>
+    <string name="btn_login">INICIAR SESSIÓ</string>
+    <string name="login_succ">Inici de sessió exitós</string>
+    <string name="login_unsucc">Inici de sessió no exitós</string>
+    <string name="correct_login">admin</string>
+    <string name="home">Inici</string>
+    <string name="form">Formulari</string>
+    <string name="list">Llista</string>
+    <string name="txt_book">Llibre</string>
+    <string name="txt_chapter">Capítol</string>
+    <string name="txt_verse">Versicle</string>
+    <string name="txt_text">Text</string>
+    <string name="btn_create">CREAR</string>
+    <string name="btn_delete_all">ELIMINAR TOT</string>
+    <string name="btn_delete">ELIMINAR</string>
+    <string name="list_empty">La llista és buida</string>
+    <string name="dialog_proceed">CONTINUAR</string>
+    <string name="dialog_cancel" tools:ignore="ButtonCase">CANCEL·LAR</string>
+    <string name="dialog_delete_verse">Segur que vols eliminar-lo?</string>
+    <string name="toast_verse_deleted">El versicle ha sigut eliminat</string>
+    <string name="toast_cancelled">Operació cancel·lada</string>
+    <string name="toast_data_deleted">Totes les dades han sigut eliminades</string>
+    <string name="dialog_delete_data">Segur que vols eliminar totes les dades</string>
+    <string name="toast_new_verse">Un nou versicle ha sigut afegit</string>
+    <string name="toast_fill_fields">Tots els camps han de ser emplenats</string>
+    <string name="txt_welcome">BENVINGUT, PECADOR</string>
+    <string name="settings_header">Configuració</string>
+    <string name="language_title">Idioma</string>
+    <string name="delete_settings_title">Eliminar configuració</string>
+    <string name="delete_settings_summary">Elimina les preferències desades i restableix els seus valors als valors predeterminats</string>
+    <string name="logout_menu_item">Tancar sessió</string>
+    <string name="delete_settings_key">delete_settings</string>
+    <string name="toast_deleted_settings">Totes les preferències desades han sigut eliminades</string>
+</resources>

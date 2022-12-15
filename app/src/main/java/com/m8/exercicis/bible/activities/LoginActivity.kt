@@ -30,14 +30,14 @@ class LoginActivity : AppCompatActivity() {
 
         val txtUsername: EditText = findViewById(R.id.txtUsername)
         val txtPassword: EditText = findViewById(R.id.txtPassword)
-        val btnSignIn: Button = findViewById(R.id.btnSignIn)
+        val btnLogin: Button = findViewById(R.id.btnLogin)
 
         /*
          * Username and password must be "admin"-"admin" to login successfully, and after clicking
          * the button, both fields are cleared, and a toast is shown indicating if it was
          * successful. If logged, that will be saved so next time user doesn't have to log in again.
          */
-        btnSignIn.setOnClickListener {
+        btnLogin.setOnClickListener {
             if (txtUsername.text.toString() == getString(R.string.correct_login) &&
                 txtPassword.text.toString() == getString(R.string.correct_login)
             ) {
