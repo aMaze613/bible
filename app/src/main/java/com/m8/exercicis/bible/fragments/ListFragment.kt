@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.m8.exercicis.bible.R
+import com.m8.exercicis.bible.SwipeToDeleteCallback
 import com.m8.exercicis.bible.Verse
 import com.m8.exercicis.bible.activities.BottomNavigationActivity.Companion.dbHelper
 import com.m8.exercicis.bible.recycler_views.RecyclerViewAdapter
@@ -36,6 +38,16 @@ class ListFragment : Fragment() {
                 DividerItemDecoration.VERTICAL
             )
         )
+
+        val swipeHandler = object : SwipeToDeleteCallback(requireContext()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val recyclerViewAdapter = recyclerView.adapter as RecyclerViewAdapter
+                recyclerViewAdapter.removeAt(viewHolder.adapterPosition, context!!)
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeHandler)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
+
         /*
          * If the list from the recycler view is empty, the element is hidden to let a message be
          * visible indicating that the list is indeed empty.

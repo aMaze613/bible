@@ -2,6 +2,7 @@ package com.m8.exercicis.bible.recycler_views
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,42 +40,41 @@ class RecyclerViewAdapter(private var list: MutableList<Verse>, private var lblE
                 .addToBackStack(null)
                 .commit()
         }
-
-        /*
-         * When trying to delete a verse from the list, the user is prompt with a dialog to confirm
-         * the decision, and after that, a toast is shown with a message according to that choice.
-         */
-        val builderDeleteVerse = AlertDialog.Builder(holder.itemView.context)
-        builderDeleteVerse.setMessage(holder.itemView.context.getString(R.string.dialog_delete_verse))
-            .setPositiveButton(holder.itemView.context.getString(R.string.dialog_proceed)) { _, _ ->
-                dbHelper.deleteVerse(list[position].id)
-                list.removeAt(position)
-                notifyDataSetChanged()
-                if (list.isEmpty()) lblEmptyList.visibility = View.VISIBLE
-                Toast.makeText(
-                    holder.itemView.context,
-                    holder.itemView.context.getString(R.string.toast_verse_deleted),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-            .setNegativeButton(holder.itemView.context.getString(R.string.dialog_cancel)) { _, _ ->
-                Toast.makeText(
-                    holder.itemView.context,
-                    holder.itemView.context.getString(R.string.toast_cancelled),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-        holder.btnDelete.setOnClickListener {
-            builderDeleteVerse.create().show()
-        }
     }
 
     override fun getItemCount() = list.size
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val txtNom: TextView = view.findViewById(R.id.itemTitol)
-        val btnDelete: Button = view.findViewById(R.id.btnDelete)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun removeAt(position: Int, context: Context) {
+        /*
+         * When trying to delete a verse from the list, the user is prompt with a dialog to confirm
+         * the decision, and after that, a toast is shown with a message according to that choice.
+         */
+        val builderDeleteVerse = AlertDialog.Builder(context)
+        builderDeleteVerse.setMessage(context.getString(R.string.dialog_delete_verse))
+            .setPositiveButton(context.getString(R.string.dialog_proceed)) { _, _ ->
+                dbHelper.deleteVerse(list[position].id)
+                list.removeAt(position)
+                notifyDataSetChanged()
+                if (list.isEmpty()) lblEmptyList.visibility = View.VISIBLE
+                Toast.makeText(
+                    context,
+                    context.getString(R.string.toast_verse_deleted),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            .setNegativeButton(context.getString(R.string.dialog_cancel)) { _, _ ->
+                notifyDataSetChanged()
+                Toast.makeText(
+                    context,
+                    context.getString(R.string.toast_cancelled),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        builderDeleteVerse.create().show()
+    }
 }
