@@ -1,6 +1,5 @@
 package com.m8.exercicis.bible.db
 
-
 object VersesContract {
 
     const val TABLE_NAME = "verses"

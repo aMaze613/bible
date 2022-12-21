@@ -13,7 +13,6 @@ import com.m8.exercicis.bible.R
 import com.m8.exercicis.bible.Verse
 import com.m8.exercicis.bible.activities.BottomNavigationActivity.Companion.dbHelper
 
-
 class FormFragment : Fragment() {
 
     override fun onCreateView(
@@ -70,12 +69,17 @@ class FormFragment : Fragment() {
                 txtChapter.text.clear()
                 txtVerse.text.clear()
                 txtText.text.clear()
-                Toast.makeText(context, getString(R.string.toast_new_verse), Toast.LENGTH_SHORT).show()
-            } else Toast.makeText(context, getString(R.string.toast_fill_fields), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.toast_new_verse), Toast.LENGTH_SHORT)
+                    .show()
+            } else Toast.makeText(
+                context,
+                getString(R.string.toast_fill_fields),
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
         btnDeleteAll.setOnClickListener {
-            builderDeleteList.create().show()
+            builderDeleteList.setCancelable(false).create().show()
         }
 
         return view

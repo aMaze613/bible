@@ -1,6 +1,5 @@
 package com.m8.exercicis.bible
 
-
 class Verse(
     var id: Long,
     val book: String,

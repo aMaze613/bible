@@ -35,4 +35,5 @@
     <string name="logout_menu_item">Tancar sessió</string>
     <string name="delete_settings_key">delete_settings</string>
     <string name="toast_deleted_settings">Totes les preferències desades han sigut eliminades</string>
+    <string name="language_change">Idioma canviat</string>
 </resources>

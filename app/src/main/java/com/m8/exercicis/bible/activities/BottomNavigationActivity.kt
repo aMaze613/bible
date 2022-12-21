@@ -15,7 +15,6 @@ import com.m8.exercicis.bible.fragments.HomeFragment
 import com.m8.exercicis.bible.fragments.ListFragment
 import com.m8.exercicis.bible.fragments.SettingsFragment
 
-
 class BottomNavigationActivity : AppCompatActivity() {
 
     /*
@@ -65,6 +64,11 @@ class BottomNavigationActivity : AppCompatActivity() {
         return true
     }
 
+    /*
+     * On the settings menu at the top right corner, there are two items. If the settings one is
+     * selected, the SettingsFragment is shown, and if the logout one is selected, app returns to
+     * Login Activity and removes the Shared Preference to login automatically.
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.item_settings -> {
             loadFragment(SettingsFragment(), true)

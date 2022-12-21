@@ -13,9 +13,12 @@ import com.m8.exercicis.bible.R
 import com.m8.exercicis.bible.activities.BottomNavigationActivity.Companion.bottomNav
 import java.util.*
 
-
 class SettingsFragment : PreferenceFragmentCompat() {
 
+    /*
+     * When preparing the settings menu, it is removed, since we don't want to show it on the
+     * SettingsFragment.
+     */
     override fun onPrepareOptionsMenu(menu: Menu) {
         menu.clear()
     }
@@ -34,29 +37,44 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
         val languageList: ListPreference? = findPreference("language")
-        languageList?.value = when (activity?.getSharedPreferences("BIBLE_APP_CONFIGURATION", Context.MODE_PRIVATE)?.getString("language", "en")) {
-            "es" -> "espanyol"
-            "ca" -> "catala"
-            else -> "english"
-        }
-        languageList?.onPreferenceChangeListener = Preference.OnPreferenceChangeListener() { _, newValue ->
-            val localeCode: String = when (newValue.toString()) {
-                "espanyol" -> "es"
-                "catala" -> "ca"
-                else -> ""
+        /*
+         * When the preferences are created, the language list value is set based on the language
+         * saved on the Shared Preferences.
+         */
+        languageList?.value =
+            when (activity?.getSharedPreferences("BIBLE_APP_CONFIGURATION", Context.MODE_PRIVATE)
+                ?.getString("language", "en")) {
+                "es" -> "espanyol"
+                "ca" -> "catala"
+                else -> "english"
             }
-            val config: Configuration = resources.configuration
-            config.setLocale(Locale(localeCode.lowercase(Locale.getDefault())))
-            @Suppress("DEPRECATION")
-            resources.updateConfiguration(config, resources.displayMetrics)
-            activity?.getSharedPreferences("BIBLE_APP_CONFIGURATION", Context.MODE_PRIVATE)
-                ?.edit()?.putString("language", localeCode)?.apply()
-            Toast.makeText(context, "Language changed", Toast.LENGTH_SHORT)
-                .show()
-            true
-        }
+        /*
+         * A change listener is added to the language list, to update the language every time the
+         * selected item changes. The Shared Preference is saved too.
+         */
+        languageList?.onPreferenceChangeListener =
+            Preference.OnPreferenceChangeListener() { _, newValue ->
+                val localeCode: String = when (newValue.toString()) {
+                    "espanyol" -> "es"
+                    "catala" -> "ca"
+                    else -> ""
+                }
+                val config: Configuration = resources.configuration
+                config.setLocale(Locale(localeCode.lowercase(Locale.getDefault())))
+                @Suppress("DEPRECATION")
+                resources.updateConfiguration(config, resources.displayMetrics)
+                activity?.getSharedPreferences("BIBLE_APP_CONFIGURATION", Context.MODE_PRIVATE)
+                    ?.edit()?.putString("language", localeCode)?.apply()
+                Toast.makeText(context, "Language changed", Toast.LENGTH_SHORT)
+                    .show()
+                true
+            }
     }
 
+    /*
+     * If the preference to delete the SharedPreferences is clicked, the SharedPreferences gets
+     * deleted, and the language gets back to its default value (English).
+     */
     override fun onPreferenceTreeClick(preference: Preference): Boolean {
         return if (preference.key == context?.getString(R.string.delete_settings_key)) {
             activity?.getSharedPreferences("BIBLE_APP_CONFIGURATION", Context.MODE_PRIVATE)

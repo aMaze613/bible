@@ -6,7 +6,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,12 +15,14 @@ import com.m8.exercicis.bible.Verse
 import com.m8.exercicis.bible.activities.BottomNavigationActivity.Companion.dbHelper
 import com.m8.exercicis.bible.fragments.DetailFragment
 
-
 /*
  * A TextView variable is passed when creating an instance of this class, to be able to hide or show
  * it from here.
  */
-class RecyclerViewAdapter(private var list: MutableList<Verse>, private var lblEmptyList: TextView) :
+class RecyclerViewAdapter(
+    private var list: MutableList<Verse>,
+    private var lblEmptyList: TextView
+) :
     RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -48,6 +49,10 @@ class RecyclerViewAdapter(private var list: MutableList<Verse>, private var lblE
         val txtNom: TextView = view.findViewById(R.id.itemTitol)
     }
 
+    /*
+     * When this function is called, a message is shown to confirm if you really want to delete the
+     * swiped verse.
+     */
     @SuppressLint("NotifyDataSetChanged")
     fun removeAt(position: Int, context: Context) {
         /*
@@ -75,6 +80,6 @@ class RecyclerViewAdapter(private var list: MutableList<Verse>, private var lblE
                     Toast.LENGTH_SHORT
                 ).show()
             }
-        builderDeleteVerse.create().show()
+        builderDeleteVerse.setCancelable(false).create().show()
     }
 }

@@ -15,7 +15,6 @@ import com.m8.exercicis.bible.db.VersesContract.SQL_CREATE_ENTRIES
 import com.m8.exercicis.bible.db.VersesContract.SQL_DELETE_ENTRIES
 import com.m8.exercicis.bible.db.VersesContract.TABLE_NAME
 
-
 class VersesDBHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
@@ -47,7 +46,8 @@ class VersesDBHelper(context: Context) :
     @SuppressLint("Range")
     fun getVerses(): MutableList<Verse> {
         val verses: MutableList<Verse> = mutableListOf()
-        val query = "SELECT id, $COLUMN_NAME_BOOK, $COLUMN_NAME_CHAPTER, $COLUMN_NAME_VERSE, $COLUMN_NAME_TEXT FROM $TABLE_NAME"
+        val query =
+            "SELECT id, $COLUMN_NAME_BOOK, $COLUMN_NAME_CHAPTER, $COLUMN_NAME_VERSE, $COLUMN_NAME_TEXT FROM $TABLE_NAME"
         val cursor: Cursor = this.writableDatabase.rawQuery(query, null)
         while (cursor.moveToNext()) {
             verses.add(

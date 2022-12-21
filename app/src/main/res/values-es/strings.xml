@@ -35,4 +35,5 @@
     <string name="logout_menu_item">Cerrar sesión</string>
     <string name="delete_settings_key">delete_settings</string>
     <string name="toast_deleted_settings">Todas las preferencias guardadas han sido eliminadas</string>
+    <string name="language_change">Idioma cambiado</string>
 </resources>

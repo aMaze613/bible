@@ -16,7 +16,6 @@ import com.m8.exercicis.bible.Verse
 import com.m8.exercicis.bible.activities.BottomNavigationActivity.Companion.dbHelper
 import com.m8.exercicis.bible.recycler_views.RecyclerViewAdapter
 
-
 class ListFragment : Fragment() {
 
     override fun onCreateView(
@@ -39,6 +38,10 @@ class ListFragment : Fragment() {
             )
         )
 
+        /*
+         * A swiper is added to every item, and when you swipe from right to left, a message is
+         * shown to confirm if you really want to delete the verse.
+         */
         val swipeHandler = object : SwipeToDeleteCallback(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val recyclerViewAdapter = recyclerView.adapter as RecyclerViewAdapter

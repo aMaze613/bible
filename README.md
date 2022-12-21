@@ -50,3 +50,32 @@ During the development of this version, we have worked with:
 <img src="readme_images/Detail.jpg" height="512">
 
 > The Detail Fragment is very basic, with a title with the same format from the one on the Recycler View item, and after that the text from the verse is shown. Both TextViews are formatted so multiple-line text is allowed, with paddings on the left and right. On this Fragment, the Bottom Navigation Menu is hidden, and to go back to the List, the back button from the phone must be clicked. Obviously, when that is done, the Bottom Navigation Menu is available again.
+
+<br>
+
+## Second delivery (21/12/2022)
+During the development of this version, we have worked with:
+- Shared Preferences
+- Multi Language
+
+#### Login
+<img src="readme_images/Autologin.jpg" height="512">
+
+> When you log in correctly, a Shared Preference is saved, so next time you open the app, it automatically logs in and goes to Home. Here is also where the language saved on the SHared Preferences is loaded when opening the app.
+
+<br>
+
+#### Settings
+<p>
+  <img src="readme_images/Settings.jpg" height="512">
+  <img src="readme_images/Preferences.jpg" height="512">
+</p>
+
+> On any Fragment from the Bottom Navigation Activity, there's now a menu at the top right corner. It has two items: Settings and Logout. If you click on Logout, you get back to the Login screen and the automatic log in is deleted from the Shared Preferences. If you click on Settings, a new Fragment appears called Settings Fragment. There, you can choose a language (English, Spanish and Catalan), and you can delete all Shared Preferences.
+
+<br>
+
+#### List
+<img src="readme_images/Swiper.jpg" height="512">
+
+> On the Recycler View, the button to delete an item has been replaced with a Swiper. Now if you want to delete a verse, you must swipe it to the left, and a dialog will appear as before.

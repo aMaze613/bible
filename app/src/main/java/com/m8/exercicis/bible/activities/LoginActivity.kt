@@ -11,24 +11,35 @@ import androidx.appcompat.app.AppCompatActivity
 import com.m8.exercicis.bible.R
 import java.util.*
 
-
 class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        /*
+         * The Shared Preferences gets checked before loading anything from the Login Activity, and
+         * sets the correct language. If none is configured, it sets English as default.
+         */
         val config: Configuration = resources.configuration
-        config.setLocale(Locale(getSharedPreferences("BIBLE_APP_CONFIGURATION", Context.MODE_PRIVATE).getString("language", "en")
-            ?.lowercase(Locale.getDefault()) ?: "en"))
+        config.setLocale(
+            Locale(
+                getSharedPreferences(
+                    "BIBLE_APP_CONFIGURATION",
+                    Context.MODE_PRIVATE
+                ).getString("language", "en")
+                    ?.lowercase(Locale.getDefault()) ?: "en"
+            )
+        )
         @Suppress("DEPRECATION")
         resources.updateConfiguration(config, resources.displayMetrics)
-        
+
         /*
          * The Shared Preferences gets checked before loading anything from the Login Activity, and
          * if the user was logged before, it skips directly to the Bottom Navigation Activity.
          */
         if (getSharedPreferences("BIBLE_APP_CONFIGURATION", Context.MODE_PRIVATE)
-                .getBoolean("logged", false)) {
+                .getBoolean("logged", false)
+        ) {
             val intent = Intent(this, BottomNavigationActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
@@ -52,6 +63,10 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, getString(R.string.login_succ), Toast.LENGTH_SHORT).show()
                 txtUsername.text.clear()
                 txtPassword.text.clear()
+                /*
+                 * When logged correctly, a value gets saved on Shared Preferences to automatically
+                 * login next time you open the app.
+                 */
                 getSharedPreferences("BIBLE_APP_CONFIGURATION", Context.MODE_PRIVATE)
                     .edit().putBoolean("logged", true).apply()
                 val intent = Intent(this, BottomNavigationActivity::class.java)

@@ -11,7 +11,6 @@ import com.m8.exercicis.bible.R
 import com.m8.exercicis.bible.Verse
 import com.m8.exercicis.bible.activities.BottomNavigationActivity.Companion.bottomNav
 
-
 /*
  * A Verse variable is passed when creating an instance of this class, to be able to access the
  * content of the clicked verse from the list.
