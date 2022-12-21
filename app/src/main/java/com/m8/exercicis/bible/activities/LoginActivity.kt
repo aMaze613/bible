@@ -2,18 +2,26 @@ package com.m8.exercicis.bible.activities
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.m8.exercicis.bible.R
+import java.util.*
 
 
 class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val config: Configuration = resources.configuration
+        config.setLocale(Locale(getSharedPreferences("BIBLE_APP_CONFIGURATION", Context.MODE_PRIVATE).getString("language", "en")
+            ?.lowercase(Locale.getDefault()) ?: "en"))
+        @Suppress("DEPRECATION")
+        resources.updateConfiguration(config, resources.displayMetrics)
         
         /*
          * The Shared Preferences gets checked before loading anything from the Login Activity, and
