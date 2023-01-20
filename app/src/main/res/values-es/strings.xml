@@ -36,4 +36,7 @@
     <string name="delete_settings_key">delete_settings</string>
     <string name="toast_deleted_settings">Todas las preferencias guardadas han sido eliminadas</string>
     <string name="language_change">Idioma cambiado</string>
+    <string name="btn_search">BUSCAR</string>
+    <string name="verse_not_found_toast">Versículo no encontrado</string>
+    <string name="error_occurred_toast">Se ha producido un error</string>
 </resources>
