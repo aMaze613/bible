@@ -89,7 +89,7 @@ During the development of this version, we have worked with:
 #### Home
 <img src="readme_images/Retrofit.jpg" height="512">
 
-> The Home Fragment has been redesigned. Now it has a form to search for existing verses from the open API https://bible-api-com/. If all fields are filled and the request returns a verse, a Detail Fragment will open. If the request doesn't find a verse with these parameters, a toast is shown indicating that the verse was not found. If any field is not filled, a toast is shown requesting to do so.
+> The Home Fragment has been redesigned. Now it has a form to search for existing verses from the open API https://bible-api.com/. If all fields are filled and the request returns a verse, a Detail Fragment will open. If the request doesn't find a verse with these parameters, a toast is shown indicating that the verse was not found. If any field is not filled, a toast is shown requesting to do so.
 
 <br>
 
