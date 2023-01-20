@@ -79,3 +79,21 @@ During the development of this version, we have worked with:
 <img src="readme_images/Swiper.jpg" height="512">
 
 > On the Recycler View, the button to delete an item has been replaced with a Swiper. Now if you want to delete a verse, you must swipe it to the left, and a dialog will appear as before.
+
+<br>
+
+## Third delivery (23/01/2023)
+During the development of this version, we have worked with:
+- Retrofit
+
+#### Home
+<img src="readme_images/Retrofit.jpg" height="512">
+
+> The Home Fragment has been redesigned. Now it has a form to search for existing verses from the open API https://bible-api-com/. If all fields are filled and the request returns a verse, a Detail Fragment will open. If the request doesn't find a verse with these parameters, a toast is shown indicating that the verse was not found. If any field is not filled, a toast is shown requesting to do so.
+
+<br>
+
+#### Detail
+<img src="readme_images/Response.jpg" height="512">
+
+> A Detail Fragment is loaded with the text obtained from the request to the bible-api. The other fields (book, chapter and verse) are reused from the fields filled by the user on the Home Fragment.

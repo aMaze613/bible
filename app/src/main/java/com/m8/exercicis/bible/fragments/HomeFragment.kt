@@ -63,6 +63,11 @@ class HomeFragment : Fragment() {
                                 .show()
                             return
                         }
+
+                        /*
+                         * If the API request went well, a DetailFragment is loaded with the
+                         * received data.
+                         */
                         activity?.supportFragmentManager?.beginTransaction()
                             ?.replace(
                                 R.id.fragment_container, DetailFragment(
